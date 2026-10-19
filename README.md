@@ -2,6 +2,8 @@
 
 SPA React + TypeScript para confirmação de presença e organização colaborativa da festa, usando Supabase diretamente no navegador.
 
+O projeto pode ser publicado diretamente na Vercel como um projeto Vite.
+
 ## Configuração
 
 Crie um arquivo `.env.local` na raiz do projeto:
@@ -26,3 +28,14 @@ npm run dev
 npm run build
 npm run lint
 ```
+
+## Deploy na Vercel
+
+Importe o repositório `rios-pedro/new-year-2027` na Vercel e configure as variáveis de ambiente do projeto:
+
+```text
+VITE_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY
+```
+
+O comando de build é `npm run build` e o diretório de saída é `dist`.
