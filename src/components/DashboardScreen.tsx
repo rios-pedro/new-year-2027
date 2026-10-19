@@ -23,7 +23,7 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
       supabase.from('contributions').select('food_and_drinks, board_games').eq('guest_id', guest.id).maybeSingle(),
       supabase
         .from('guests')
-        .select('id, name, contributions(food_and_drinks, board_games)')
+        .select('id, name')
         .eq('rsvp_status', 'confirmed')
         .order('name'),
     ])
@@ -34,11 +34,30 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
       return
     }
 
+    const confirmedGuests = (guestsResult.data ?? []) as Pick<Guest, 'id' | 'name'>[]
+    const guestIds = confirmedGuests.map((confirmedGuest) => confirmedGuest.id)
+    const contributionsResult = guestIds.length
+      ? await supabase.from('contributions').select('guest_id, food_and_drinks, board_games').in('guest_id', guestIds)
+      : { data: [], error: null }
+
+    if (contributionsResult.error) {
+      setErrorMessage('Não foi possível carregar os itens dos convidados.')
+      setIsLoading(false)
+      return
+    }
+
+    const contributionsByGuestId = new Map(
+      (contributionsResult.data ?? []).map((item) => [item.guest_id, item]),
+    )
+
     setContribution({
       food_and_drinks: ownResult.data?.food_and_drinks ?? '',
       board_games: ownResult.data?.board_games ?? '',
     })
-    setGuests((guestsResult.data ?? []) as GuestContribution[])
+    setGuests(confirmedGuests.map((confirmedGuest) => ({
+      ...confirmedGuest,
+      contributions: contributionsByGuestId.get(confirmedGuest.id) ?? null,
+    })))
     setIsLoading(false)
   }, [guest.id])
 
