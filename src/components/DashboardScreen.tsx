@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Check, ClipboardList, LoaderCircle, RefreshCw, Sparkles, Utensils, Users, Gamepad2 } from 'lucide-react'
+import { Check, ClipboardList, ExternalLink, LoaderCircle, MessageCircle, RefreshCw, Sparkles, Utensils, Users, Gamepad2 } from 'lucide-react'
+import invitation from '../config/invitation.json'
 import { supabase } from '../lib/supabaseClient'
 import type { Contribution, Guest, GuestContribution } from '../types'
 
@@ -97,6 +98,24 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
           </div>
           <div className="flex items-center gap-2 text-sm text-zinc-400"><Users className="h-4 w-4 text-amber-300" /> Organização colaborativa</div>
         </header>
+
+        <section className="mb-6 flex flex-col gap-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex items-start gap-3">
+            <div className="rounded-xl bg-emerald-400/15 p-3 text-emerald-300"><MessageCircle className="h-5 w-5" /></div>
+            <div>
+              <h2 className="font-serif text-2xl text-white">Você está confirmado!</h2>
+              <p className="mt-1 text-sm text-zinc-400">Entre no grupo do WhatsApp para acompanhar os detalhes da festa.</p>
+            </div>
+          </div>
+          <a
+            href={invitation.whatsappGroupUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-5 font-semibold text-zinc-950 transition hover:bg-emerald-300"
+          >
+            Entrar no grupo <ExternalLink className="h-4 w-4" />
+          </a>
+        </section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <section className="rounded-2xl border border-amber-200/15 bg-white/[0.05] p-5 sm:p-7">
