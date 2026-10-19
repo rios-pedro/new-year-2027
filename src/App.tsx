@@ -2,12 +2,21 @@ import { useEffect, useState } from 'react'
 import { AlertCircle, Check, LoaderCircle, PartyPopper, Sparkles } from 'lucide-react'
 import { supabase } from './lib/supabaseClient'
 import { DashboardScreen } from './components/DashboardScreen'
+import { AdminScreen } from './components/AdminScreen'
 import { RsvpScreen } from './components/RsvpScreen'
 import type { Guest, RsvpStatus } from './types'
 
 type ViewState = 'loading' | 'error' | 'rsvp' | 'dashboard' | 'declined'
 
 function App() {
+  if (window.location.pathname.replace(/\/+$/, '') === '/admin') {
+    return <AdminScreen />
+  }
+
+  return <GuestApp />
+}
+
+function GuestApp() {
   const [guest, setGuest] = useState<Guest | null>(null)
   const [view, setView] = useState<ViewState>('loading')
   const [errorMessage, setErrorMessage] = useState('')
