@@ -33,13 +33,13 @@ export function RsvpScreen({ guest, onUpdated }: RsvpScreenProps) {
   }
 
   return (
-    <main className="relative flex min-h-screen overflow-hidden bg-[#09090b] px-4 py-8 text-zinc-100 sm:px-6 lg:px-8">
+    <main className="relative flex min-h-screen overflow-hidden bg-[#09090b] px-4 py-6 text-zinc-100 sm:px-6 sm:py-8 lg:px-8">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-amber-400/10 blur-3xl" />
       <section className="relative z-10 m-auto w-full max-w-2xl text-center">
-        <Sparkles className="mx-auto mb-8 h-8 w-8 text-amber-300" />
+        <Sparkles className="mx-auto mb-6 h-8 w-8 text-amber-300 sm:mb-8" />
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-amber-300/80">Convite especial</p>
-        <h1 className="mt-5 font-serif text-6xl leading-none text-white sm:text-8xl">{invitation.title}</h1>
-        <div className="mx-auto my-8 h-px w-24 bg-amber-300/60" />
+        <h1 className="mt-5 break-words font-serif text-5xl leading-none text-white sm:text-8xl">{invitation.title}</h1>
+        <div className="mx-auto my-6 h-px w-24 bg-amber-300/60 sm:my-8" />
         <p className="text-lg text-zinc-300">Olá, <span className="font-semibold text-amber-200">{guest.name}</span>!</p>
         <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-zinc-400">{invitation.message}</p>
         <div className="mx-auto mt-7 grid max-w-xl gap-2 text-left text-xs text-zinc-400 sm:grid-cols-3">
@@ -53,7 +53,7 @@ export function RsvpScreen({ guest, onUpdated }: RsvpScreenProps) {
           </div>
           <div className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:col-span-3">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
-            <span>{invitation.location}</span>
+            <span className="break-words">{invitation.location}</span>
           </div>
         </div>
         <div className="mx-auto mt-10 grid max-w-lg gap-3 sm:grid-cols-2">

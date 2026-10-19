@@ -107,37 +107,37 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#09090b] px-4 py-8 text-zinc-100 sm:px-6 lg:px-8">
+    <main className="min-h-screen overflow-x-hidden bg-[#09090b] px-4 py-6 text-zinc-100 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <header className="mb-8 flex flex-col gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-amber-300/80"><Sparkles className="h-4 w-4" /> Réveillon</div>
-            <h1 className="mt-3 font-serif text-5xl text-white sm:text-6xl">A festa começa aqui.</h1>
+            <h1 className="mt-3 break-words font-serif text-4xl text-white sm:text-6xl">A festa começa aqui.</h1>
             <p className="mt-3 text-sm text-zinc-400">Bem-vindo, <span className="text-amber-200">{guest.name}</span>. Vamos organizar uma noite inesquecível.</p>
           </div>
           <div className="flex items-center gap-2 text-sm text-zinc-400"><Users className="h-4 w-4 text-amber-300" /> Organização colaborativa</div>
         </header>
 
-        <section className="mb-6 flex flex-col gap-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <section className="mb-6 flex flex-col gap-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div className="flex items-start gap-3">
             <div className="rounded-xl bg-emerald-400/15 p-3 text-emerald-300"><MessageCircle className="h-5 w-5" /></div>
             <div>
               <h2 className="font-serif text-2xl text-white">Você está confirmado!</h2>
-              <p className="mt-1 text-sm text-zinc-400">Entre no grupo do WhatsApp para acompanhar os detalhes da festa.</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-400">Entre no grupo do WhatsApp para acompanhar os detalhes da festa.</p>
             </div>
           </div>
           <a
             href={invitation.whatsappGroupUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-5 font-semibold text-zinc-950 transition hover:bg-emerald-300"
+            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-5 font-semibold text-zinc-950 transition hover:bg-emerald-300 sm:w-auto"
           >
             Entrar no grupo <ExternalLink className="h-4 w-4" />
           </a>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-          <section className="rounded-2xl border border-amber-200/15 bg-white/[0.05] p-5 sm:p-7">
+          <section className="min-w-0 rounded-2xl border border-amber-200/15 bg-white/[0.05] p-4 sm:p-7">
             <div className="mb-6 flex items-start gap-3">
               <div className="rounded-xl bg-amber-300/10 p-3 text-amber-300"><ClipboardList className="h-5 w-5" /></div>
               <div><h2 className="font-serif text-3xl text-white">Meus itens</h2><p className="mt-1 text-xs text-zinc-500">Tudo é opcional — contribua se quiser.</p></div>
@@ -155,9 +155,9 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
             {errorMessage && <p className="mt-4 text-sm text-red-300">{errorMessage}</p>}
           </section>
 
-          <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-7">
+          <section className="min-w-0 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7">
             <div className="mb-6 flex items-center justify-between gap-3"><div><h2 className="font-serif text-3xl text-white">Lista geral</h2><p className="mt-1 text-xs text-zinc-500">Atualizada em tempo real</p></div><RefreshCw className="h-5 w-5 text-amber-300" /></div>
-            {isLoading ? <div className="flex items-center justify-center py-16 text-zinc-500"><LoaderCircle className="h-6 w-6 animate-spin text-amber-300" /></div> : guests.length === 0 ? <p className="py-12 text-center text-sm text-zinc-500">Ainda não há convidados confirmados.</p> : <div className="overflow-x-auto"><table className="w-full min-w-[420px] text-left text-sm"><thead><tr className="border-b border-white/10 text-xs uppercase tracking-wider text-zinc-500"><th className="px-3 pb-3 font-medium">Convidado</th><th className="px-3 pb-3 font-medium">Comidas / bebidas</th><th className="px-3 pb-3 font-medium">Jogos</th></tr></thead><tbody>{guests.map((item) => { const itemContribution = Array.isArray(item.contributions) ? item.contributions[0] : item.contributions; return <tr key={item.id} className="border-b border-white/5 last:border-0"><td className="px-3 py-4 font-medium text-zinc-200">{item.name}{item.id === guest.id && <span className="ml-2 text-xs font-normal text-amber-300">(você)</span>}</td><td className="px-3 py-4 text-zinc-400">{itemContribution?.food_and_drinks || <span className="text-zinc-700">—</span>}</td><td className="px-3 py-4 text-zinc-400">{itemContribution?.board_games || <span className="text-zinc-700">—</span>}</td></tr> })}</tbody></table></div>}
+            {isLoading ? <div className="flex items-center justify-center py-16 text-zinc-500"><LoaderCircle className="h-6 w-6 animate-spin text-amber-300" /></div> : guests.length === 0 ? <p className="py-12 text-center text-sm text-zinc-500">Ainda não há convidados confirmados.</p> : <div className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]"><table className="w-full min-w-[420px] text-left text-sm"><thead><tr className="border-b border-white/10 text-xs uppercase tracking-wider text-zinc-500"><th className="px-3 pb-3 font-medium">Convidado</th><th className="px-3 pb-3 font-medium">Comidas / bebidas</th><th className="px-3 pb-3 font-medium">Jogos</th></tr></thead><tbody>{guests.map((item) => { const itemContribution = Array.isArray(item.contributions) ? item.contributions[0] : item.contributions; return <tr key={item.id} className="border-b border-white/5 last:border-0"><td className="max-w-[8rem] break-words px-3 py-4 font-medium text-zinc-200">{item.name}{item.id === guest.id && <span className="ml-2 text-xs font-normal text-amber-300">(você)</span>}</td><td className="max-w-[12rem] break-words px-3 py-4 text-zinc-400">{itemContribution?.food_and_drinks || <span className="text-zinc-700">—</span>}</td><td className="max-w-[12rem] break-words px-3 py-4 text-zinc-400">{itemContribution?.board_games || <span className="text-zinc-700">—</span>}</td></tr> })}</tbody></table></div>}
           </section>
         </div>
       </div>
