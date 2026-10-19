@@ -11,6 +11,15 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
+
+# Local agent skills and generated tool metadata
+.agents/
+.claude/
+agent/
+skills-lock.json
 
 # Editor directories and files
 .vscode/*
