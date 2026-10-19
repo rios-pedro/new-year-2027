@@ -4,5 +4,11 @@
   "date": "01 de janeiro de 2027",
   "time": "a partir das 01:00",
   "location": "SH Ponte de Terra Condomínio Canto do Sabiá - Pte. Alta Norte (Gama), Brasília - DF",
-  "whatsappGroupUrl": "https://chat.whatsapp.com/KXvTTad7qhiHBR0cYFk2hj?mode=gi_t"
+  "whatsappGroupUrl": "https://chat.whatsapp.com/KXvTTad7qhiHBR0cYFk2hj?mode=gi_t",
+  "organizers": [
+    "Pedro",
+    "Maycon",
+    "Sara",
+    "Samara"
+  ]
 }

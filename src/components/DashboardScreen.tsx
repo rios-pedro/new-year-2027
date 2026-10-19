@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Check, ClipboardList, ExternalLink, LoaderCircle, MessageCircle, RefreshCw, Sparkles, Utensils, Users, Gamepad2 } from 'lucide-react'
+import { Check, ClipboardList, ExternalLink, LoaderCircle, MessageCircle, RefreshCw, Sparkles, Utensils, Users, Gamepad2, UserRoundCheck } from 'lucide-react'
 import invitation from '../config/invitation.json'
 import { supabase } from '../lib/supabaseClient'
 import type { Contribution, Guest, GuestContribution } from '../types'
@@ -115,6 +115,23 @@ export function DashboardScreen({ guest }: { guest: Guest }) {
           >
             Entrar no grupo <ExternalLink className="h-4 w-4" />
           </a>
+        </section>
+
+        <section className="mb-6 rounded-2xl border border-amber-200/15 bg-white/[0.04] p-5 sm:p-6">
+          <div className="flex items-start gap-3">
+            <div className="rounded-xl bg-amber-300/10 p-3 text-amber-300"><UserRoundCheck className="h-5 w-5" /></div>
+            <div>
+              <h2 className="font-serif text-2xl text-white">Organizadores</h2>
+              <p className="mt-1 text-sm text-zinc-400">Essa celebração está sendo preparada com carinho por:</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {invitation.organizers.map((organizer) => (
+                  <span key={organizer} className="rounded-full border border-amber-200/20 bg-amber-300/10 px-3 py-1.5 text-sm text-amber-100">
+                    {organizer}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
